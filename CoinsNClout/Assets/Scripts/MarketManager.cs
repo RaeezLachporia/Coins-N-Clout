@@ -21,7 +21,7 @@ public class MarketManager : MonoBehaviour
         foreach (var coin in coins)
         {
             coin.UpdateValue();
-            Debug.Log($"{coin.name}: ${coin.currentValue:F2}");
+            Debug.Log($"{coin.Name}: ${coin.currentValue:F2}");
         }
     }
 }
