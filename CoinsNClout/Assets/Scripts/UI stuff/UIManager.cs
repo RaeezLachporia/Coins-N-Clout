@@ -57,10 +57,7 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (computerScreenPanel.activeSelf)
-        {
-            RefreshDisplay();
-        }
+        
     }
 
     private void OnBuyCoin(CryptoCurrency coin)
