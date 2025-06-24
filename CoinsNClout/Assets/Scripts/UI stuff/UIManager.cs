@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     {
         market = FindObjectOfType<MarketManager>();
         computerScreenPanel.SetActive(false);
-        
+        InvokeRepeating(nameof(RefreshDisplay),1f,5f);
     }
     public void toggleCompScreen()
     {
@@ -46,10 +46,10 @@ public class UIManager : MonoBehaviour
             text.text = $"{coin.Name}: ${coin.currentValue:F2}";
 
             //Buy buttons
-            Button BuyBtn = row.transform.Find("BuyButton").GetComponent<Button>();
+            Button BuyBtn = row.transform.Find("BuyButn").GetComponent<Button>();
             BuyBtn.onClick.AddListener(() => OnBuyCoin(coin));
             //Sell button
-            Button sellBtn = row.transform.Find("SellButton").GetComponent<Button>();
+            Button sellBtn = row.transform.Find("SellBtn").GetComponent<Button>();
             sellBtn.onClick.AddListener(() => OnSellCoin(coin));
 
             currentRows.Add(row);
@@ -69,5 +69,10 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log($"SELL {coin.Name} at ${coin.currentValue:F2}");
         //implement sell logic here
+    }
+
+    public bool IsComputerScreenActive()
+    {
+        return computerScreenPanel != null && computerScreenPanel.activeSelf;
     }
 }

@@ -5,8 +5,13 @@ using UnityEngine;
 public class MarketManager : MonoBehaviour
 {
     public List<CryptoCurrency> coins = new List<CryptoCurrency>();
+    public UIManager uiManager;
     void Start()
     {
+        if(uiManager==null)
+        {
+            uiManager = FindAnyObjectByType<UIManager>();
+        }
         coins.Add(new CryptoCurrency("ByteCoin", 1.0f, 0.05f));
         coins.Add(new CryptoCurrency("GhostToken", 0.5f, 0.1f));
         coins.Add(new CryptoCurrency("HustleCoin", 2.0f, 0.02f));
@@ -23,5 +28,10 @@ public class MarketManager : MonoBehaviour
             coin.UpdateValue();
             Debug.Log($"{coin.Name}: ${coin.currentValue:F2}");
         }
+        if (uiManager!= null && uiManager.IsComputerScreenActive())
+        {
+
+        }
     }
+    
 }
