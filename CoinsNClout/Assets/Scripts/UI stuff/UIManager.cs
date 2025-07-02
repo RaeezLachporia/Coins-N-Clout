@@ -23,10 +23,10 @@ public class UIManager : MonoBehaviour
         bool isActive = !computerScreenPanel.activeSelf;
         computerScreenPanel.SetActive(isActive);
 
-        if (isActive)
+       /* if (isActive)
         {
             RefreshDisplay();
-        }
+        }*/
     }
 
     public void RefreshDisplay()
