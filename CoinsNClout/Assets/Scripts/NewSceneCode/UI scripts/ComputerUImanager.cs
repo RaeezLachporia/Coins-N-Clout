@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class ComputerUImanager : MonoBehaviour
 {
     [Header("UI references")]
     public GameObject computerScrenPanel;
     public GameObject Browser;
+    public TMP_Text exchangeNameText;
     private bool isBrowerOpen = false;
     private bool isComputerOpen = false;
     
@@ -36,8 +38,15 @@ public class ComputerUImanager : MonoBehaviour
         Browser.SetActive(false);
     }
 
-    public void OpenExchange(string exchangeName)
+    public void OpenExchange(Button clickedButton)
     {
+        TMP_Text exchangeText = clickedButton.GetComponentInChildren<TMP_Text>();
+        if (exchangeText == null)
+        {
+            Debug.LogWarning("No tmp_text found on button");
+            return;
+        }
+        string exchangeName = exchangeText.text;
         Debug.Log($"Opening {exchangeName} exchange...");
     }
 }
