@@ -8,6 +8,7 @@ public class ComputerUImanager : MonoBehaviour
     [Header("UI references")]
     public GameObject computerScrenPanel;
     public GameObject Browser;
+    public GameObject UseComp;
     public TMP_Text exchangeNameText;
     private bool isBrowerOpen = false;
     private bool isComputerOpen = false;
@@ -36,6 +37,7 @@ public class ComputerUImanager : MonoBehaviour
         isBrowerOpen = false;
         computerScrenPanel.SetActive(true);
         Browser.SetActive(false);
+        UseComp.SetActive(true);
     }
 
     public void OpenExchange(Button clickedButton)
