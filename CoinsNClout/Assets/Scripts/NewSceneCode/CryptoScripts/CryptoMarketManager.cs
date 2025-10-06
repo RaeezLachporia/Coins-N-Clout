@@ -17,6 +17,19 @@ public class CryptoMarketManager : MonoBehaviour
     }
     private void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer>=updateInterval)
+        {
+            UpdateMarket();
+            timer = 0f;
+        }
+    }
+    void UpdateMarket()
+    {
+        foreach (var crypto in cryptoList)
+        {
+            crypto.UpdatePrices();
+        }
+        Debug.Log("Market Updated");
     }
 }
