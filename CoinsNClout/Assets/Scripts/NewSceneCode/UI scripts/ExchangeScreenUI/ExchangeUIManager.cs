@@ -26,6 +26,13 @@ public class ExchangeUIManager : MonoBehaviour
         BrowserPanel.SetActive(false);
         MoonTradeExchangePanel.SetActive(true);
     }
+    public void OpenDogLiraExchange()
+    {
+        Debug.Log("Opening DogLira Exchange");
+        PcPanel.SetActive(false);
+        BrowserPanel.SetActive(false);
+        DogLiraExchangePanel.SetActive(true);
+    }
     public void BackToBrowserByteExchange()
     {
         ByteExchangePanel.SetActive(false);
@@ -35,5 +42,11 @@ public class ExchangeUIManager : MonoBehaviour
     {
         MoonTradeExchangePanel.SetActive(false);
         BrowserPanel.SetActive(true);
+    }
+    public void BackToBrowserDogLira()
+    {
+        DogLiraExchangePanel.SetActive(false);
+        BrowserPanel.SetActive(true);
+
     }
 }
