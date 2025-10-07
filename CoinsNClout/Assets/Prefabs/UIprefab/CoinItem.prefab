@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 2092746094850066649}
+  symbolText: {fileID: 8042413586971400261}
   priceText: {fileID: 1275831918915628027}
   buyButton: {fileID: 5161054656358772995}
   sellButton: {fileID: 6653434425787599536}

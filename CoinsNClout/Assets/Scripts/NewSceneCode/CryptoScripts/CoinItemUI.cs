@@ -7,6 +7,7 @@ public class CoinItemUI : MonoBehaviour
 {
     [Header("UI Elements")]
     public TMP_Text nameText;
+    public TMP_Text symbolText;
     public TMP_Text priceText;
     public Button buyButton;
     public Button sellButton;
@@ -43,5 +44,10 @@ public class CoinItemUI : MonoBehaviour
         {
             Debug.Log("Not enough coins");
         }
+    }
+    public void Refresh()
+    {
+        if (cryptoData == null) return;
+        priceText.text = "$" + cryptoData.currentPrice.ToString("F2");
     }
 }

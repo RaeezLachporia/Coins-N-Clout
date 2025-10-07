@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 public class ExchangeUIManager : MonoBehaviour
 {
+    [Header("Exchange controllers")]
+    public ExchangeUIController byteExchangeController;
     [Header("Panels")]
     public GameObject BrowserPanel;
     public GameObject ByteExchangePanel;
@@ -18,6 +20,11 @@ public class ExchangeUIManager : MonoBehaviour
         PcPanel.SetActive(false);
         BrowserPanel.SetActive(false);
         ByteExchangePanel.SetActive(true);
+        //populate the panel now that the button has been pressed 
+        if (byteExchangeController != null)
+        {
+            byteExchangeController.PopulateExchange();
+        }
     }
     public void OpenMoonTradeExchange()
     {

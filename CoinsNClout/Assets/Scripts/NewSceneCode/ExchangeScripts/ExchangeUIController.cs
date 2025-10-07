@@ -17,94 +17,51 @@ public class ExchangeUIController : MonoBehaviour
     public TMP_Text cashText;
     public TMP_Text holdingsText;
 
-    private List<GameObject> spawnedItems = new List<GameObject>();
+    private List<CoinItemUI> spawnedItems = new List<CoinItemUI>();
 
     private void Start()
     {
-        PopulateExchange();
-        UpdateWalletUI();
+        UpdateWalletUI(); // no PopulateExchange here
     }
+
     private void Update()
     {
-        UpdatePrices();
+        if (spawnedItems.Count > 0)
+            UpdatePrices();
     }
 
-    void PopulateExchange()
+    public void PopulateExchange()
     {
-        //clear previous items if any
+        // Clear previous items
         foreach (var item in spawnedItems)
-            Destroy(item);
+            Destroy(item.gameObject);
         spawnedItems.Clear();
 
-        //spawn a coin for each crypto
+        // Spawn a coin for each crypto
         foreach (var crypto in marketManager.cryptoList)
         {
-            GameObject newitem = Instantiate(coinItemPrefab, coinListContainer);
-            spawnedItems.Add(newitem);
-
-            //Grabs all tmpro texts from the prefab
-            TMP_Text[] texts = newitem.GetComponentsInChildren<TMP_Text>();
-            TMP_Text nameText = texts[0];
-            TMP_Text priceText = texts[1];
-
-            //sets basic info
-            nameText.text = crypto.cryptoName;
-            priceText.text = "$" + crypto.currentPrice.ToString("F2");
-            //Get buy/sell buttons from prefab
-            Button[] buttons = newitem.GetComponentsInChildren<Button>();
-            Button buyButton = buttons[0];
-            Button sellButton = buttons[1];
-
-            //funtionality for button
-            buyButton.onClick.AddListener(() => BuyCrypto(crypto));
-            sellButton.onClick.AddListener(() => SellCrypto(crypto));
+            GameObject newItemGO = Instantiate(coinItemPrefab, coinListContainer);
+            CoinItemUI itemUI = newItemGO.GetComponent<CoinItemUI>();
+            itemUI.Setup(crypto, playerWallet);
+            spawnedItems.Add(itemUI);
         }
 
-        
+        // Force layout rebuild
+        LayoutRebuilder.ForceRebuildLayoutImmediate(coinListContainer.GetComponent<RectTransform>());
     }
+
     void UpdatePrices()
     {
-        //loop through everycoin in the exchange and refresh price
-        for (int i = 0; i < marketManager.cryptoList.Count; i++)
+        foreach (var item in spawnedItems)
         {
-            CryptoData crypto = marketManager.cryptoList[i];
-            TMP_Text priceText = spawnedItems[i].GetComponentsInChildren<TMP_Text>()[1];
-            priceText.text = "$" + crypto.currentPrice.ToString("F2");
-        }
-    }
-    void BuyCrypto(CryptoData crypto)
-    {
-        bool success = playerWallet.BuyCrypto(crypto, 1);
-        if (success)
-        {
-            Debug.Log("Bought 1" + crypto.cryptoName);
-            UpdateWalletUI();
-        }
-        else
-        {
-            Debug.Log("Not enough funds");
-        }
-    }
-    void SellCrypto(CryptoData crypto)
-    {
-        bool success = playerWallet.SellCrypto(crypto, 1);
-        if (success)
-        {
-            Debug.Log("Sold 1" + crypto.cryptoName);
-            UpdateWalletUI();
-        }
-        else
-        {
-            Debug.Log("Not enough coins");
+            item.Refresh(); // safe now because spawnedItems is CoinItemUI
         }
     }
 
     void UpdateWalletUI()
     {
-        //Update cash balance
         cashText.text = "Cash: $" + playerWallet.cashBalance.ToString("F2");
 
-        //update holdings
         string holdingInfo = "Holdings:\n";
         foreach (var h in playerWallet.holdings)
         {
