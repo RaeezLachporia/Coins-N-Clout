@@ -24,6 +24,7 @@ public class ExchangeUIManager : MonoBehaviour
         if (byteExchangeController != null)
         {
             byteExchangeController.PopulateExchange();
+            Debug.Log("Populating the exchange");
         }
     }
     public void OpenMoonTradeExchange()

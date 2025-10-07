@@ -31,11 +31,11 @@ public class ExchangeUIController : MonoBehaviour
     }
 
     public void PopulateExchange()
-    {
+    {/*
         // Clear previous items
         foreach (var item in spawnedItems)
             Destroy(item.gameObject);
-        spawnedItems.Clear();
+        spawnedItems.Clear();*/
 
         // Spawn a coin for each crypto
         foreach (var crypto in marketManager.cryptoList)
