@@ -1978,6 +1978,7 @@ GameObject:
   - component: {fileID: 788368256}
   - component: {fileID: 788368258}
   - component: {fileID: 788368257}
+  - component: {fileID: 788368259}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2044,6 +2045,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!114 &788368259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788368255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc0af66a932e4d4085edc03aa9b91f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 0}
+  symbolText: {fileID: 0}
+  priceText: {fileID: 0}
+  buyButton: {fileID: 0}
+  sellButton: {fileID: 0}
 --- !u!1 &945623260
 GameObject:
   m_ObjectHideFlags: 0
